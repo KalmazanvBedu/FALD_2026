@@ -398,6 +398,78 @@ font-size:14px;
 
 }
 
+/* ==========================
+   HAMBURGER MENU
+========================== */
+
+.hamburger-btn{
+
+  display:none;
+
+  background:none;
+
+  border:none;
+
+  color:var(--havas-red);
+
+  font-size:32px;
+
+  cursor:pointer;
+
+  padding:0;
+
+  line-height:1;
+
+}
+
+/* MÓVIL */
+
+@media(max-width:768px){
+
+  .hamburger-btn{
+
+    display:block;
+
+  }
+
+  .menu{
+
+    display:none;
+
+  }
+
+  .menu.mobile-open{
+
+    display:flex;
+
+    flex-direction:column;
+
+    position:absolute;
+
+    top:72px;
+
+    left:0;
+
+    width:100%;
+
+    background:white;
+
+    box-shadow:0 10px 20px rgba(0,0,0,.15);
+
+    z-index:1000;
+
+  }
+
+  .menu.mobile-open a{
+
+    padding:18px 20px;
+
+    border-bottom:1px solid #eee;
+
+  }
+
+}
+
 </style>
 
 </head>
@@ -413,23 +485,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav>
 
-<div class="logo">
-FALD
-</div>
+  <div class="logo">
+    FALD
+  </div>
 
-<div class="menu">
+  <button
+    id="hamburgerBtn"
+    class="hamburger-btn"
+    aria-label="Abrir menú"
+  >
+    ☰
+  </button>
 
-<a href="#nosotros">Nosotros</a>
+  <div
+    class="menu"
+    id="mainMenu"
+  >
 
-<a href="#diferenciador">Factor diferenciador</a>
+    <a href="#nosotros">Nosotros</a>
 
-<a href="#cursos">Cursos</a>
+    <a href="#diferenciador">
+      Factor diferenciador
+    </a>
 
-<a href="#testimonios">Testimonios</a>
+    <a href="#cursos">
+      Cursos
+    </a>
 
-<a href="#contacto">Contacto</a>
+    <a href="#testimonios">
+      Testimonios
+    </a>
 
-</div>
+    <a href="#contacto">
+      Contacto
+    </a>
+
+  </div>
 
 </nav>
 
@@ -720,6 +811,36 @@ document
     });
 
     this.reset();
+
+  });
+
+</script>
+
+<script>
+
+const hamburgerBtn =
+  document.getElementById('hamburgerBtn');
+
+const mainMenu =
+  document.getElementById('mainMenu');
+
+hamburgerBtn.addEventListener('click', () => {
+
+  mainMenu.classList.toggle('mobile-open');
+
+});
+
+/* Cerrar menú al hacer clic */
+
+document
+  .querySelectorAll('#mainMenu a')
+  .forEach(link => {
+
+    link.addEventListener('click', () => {
+
+      mainMenu.classList.remove('mobile-open');
+
+    });
 
   });
 
