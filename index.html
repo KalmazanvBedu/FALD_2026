@@ -762,7 +762,7 @@ Curso de interés
 
 </select>
 
-<button type="submit">
+<button type="submit" id="button-formulario">
 Enviar Información
 </button>
 
@@ -814,6 +814,21 @@ document
 
   });
 
+  var form = document.querySelector('leadForm'); // Cambia el ID por el tuyo
+  var hasStarted = false;
+
+  if (form) {
+    form.addEventListener('focusin', function() {
+      if (!hasStarted) {
+        hasStarted = true;
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          'event': 'form_start'
+        });
+      }
+    });
+  }
+
 </script>
 
 <script>
@@ -843,6 +858,14 @@ document
     });
 
   });
+
+  var botonFormulario = document.getElementById("button-formulario");
+botonFormulario.addEventListener("click",()=>{
+  dataLayer.push({
+    event: 'clic_enviar_formulario'
+  })
+})
+
 
 </script>
 
