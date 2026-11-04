@@ -553,7 +553,7 @@ Google Tag Manager, Looker Studio y Analítica Digital.
 
 </p>
 
-<a href="#contacto" class="btn">
+<a href="#contacto" class="btn" id="solicitarInformacion">
 Solicitar Información
 </a>
 
@@ -840,6 +840,16 @@ document
       }
     });
   }
+
+  var botonInfo = document.getElementById("solicitarInformacion");
+
+botonInfo.addEventListener("click", ()=>{
+gtag('event', 'clic_solicitar_info', {
+  'pantalla': 1,
+  'categoria': 'educación'
+});
+
+});
 
 </script>
 
